@@ -1,6 +1,7 @@
 //
 // Created by thari on 4/4/2020.
 //
+#define debugOutput
 
 #ifndef CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
 #define CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
@@ -9,11 +10,11 @@
 #include <ws2tcpip.h>
 
 #ifdef debugOutput
-#include <iostream>
+    #include <iostream>
 #endif
 
 #ifndef bufflen
-#define bufflen 512
+    #define bufflen 512
 #endif
 
 class serverCon {
