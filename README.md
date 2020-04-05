@@ -5,6 +5,9 @@ It is a API that transforms the lengthy process of socket handling into a succin
 
 There is still much work to do but core functionality is up to par.
 
+# Important Note:
+As of now, only the windows client library and the linux server library is on this repo. We are still working on the windows server and linux client.
+
 # Use cases:
 client(device eg rover) <-> Server <-> client(controller ie a computer running a GUI control interface and can display telemetry)
 
