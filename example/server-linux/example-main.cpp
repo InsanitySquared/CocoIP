@@ -1,32 +1,96 @@
-#define debugOutput
-#define bufflen 512
+#define bufflen 512  //buffer lenght for ipConnection class
+//#define debugOutput
 
-#include "serverCon.h"
+#include "ipConnection.h"
 
-#ifndef debugOutput         //servercon.h internally includes iostream if debug output is enabled
-#include <iostream>
+#ifndef debugOutput
+    #include <iostream>
 #endif
 
-#define servPort "31079"
+#define controlPortNo 31079
+#define espPortNo 30053
 
-char buffr[bufflen]={0};
+//using namespace std;
+
+char buffer[512];
+
+ipConnection controller;
+ipConnection esp;
 
 int main() {
 
-    std::cout << "Heloo!" << std::endl;
+    //TODO- have a permanat listner so diconnects can be
+    // handled and re connections can update the
+    // socket filedescriptor and program can continue
 
-    serverCon server;
-    server.connectTo("192.168.1.7",servPort);
+    std::cout<<"Hello!"<<std::endl;
 
-    server.sendData("ct");
+    bool proceed = false;
+    while (!proceed){
+        controller.listenAndAcceptClient(controlPortNo);
+        controller.readData(buffer);        //TODO- Hnadle read/write fail
+        if ((buffer[0]=='c')&&(buffer[1]=='t')){
+            proceed = true;
+            controller.sendData("afirm",6);
+        }
+        else{
+            std::cout<<"invalid connection: controller ident values mismatch"<<std::endl<<"Retrying"<<std::endl;
+            controller.cleanUp();
+            proceed=false;
+        }
+    }
 
-    server.readData(buffr);
-    if((buffr[0]!='a')||(buffr[2]!='f')||(buffr[4]!='m')){
-        std::cout<<"hmmm... thats odd, wrong ack"<<std::endl;
+    std::cout<<"Control device connected"<<std::endl;
+
+    proceed = false;
+    while (!proceed){
+        esp.listenAndAcceptClient(espPortNo);
+        esp.readData(buffer);        //TODO- Hnadle read/write fail
+        if ((buffer[0]=='e')&&(buffer[1]=='s')&&(buffer[2]=='p')){
+            proceed = true;
+            esp.sendData("afirm",6);
+        }
+        else{
+            std::cout<<"invalid connection: esp ident values mismatch"<<std::endl<<"Retrying"<<std::endl;
+            esp.cleanUp();
+            proceed=false;
+        }
+    }
+
+    std::cout<<"Esp connected"<<std::endl;
+
+    controller.sendData("r",2);
+
+    bool quit = false;
+    while (!quit){
+        controller.readData(buffer);
+        if (buffer[0]=='s'){
+            switch (buffer[1]){
+                case 'l':
+                    if (buffer[2]=='x'){
+                        esp.sendData("slx",4);
+                        esp.readData(buffer);
+                        controller.sendData(buffer,20);
+                    }
+                else if (buffer[2]=='y'){
+                    esp.sendData("sly",4);
+                    esp.readData(buffer);
+                    controller.sendData(buffer,20);
+                }
+                default:
+                    std::cout<<"Wrong command from controller"<<std::endl;
+                    controller.sendData("error wrong comand",19);
+            }
+        }
+        else if (buffer[0]=='q'){
+            quit=true;
+        }
     }
 
 
-    std::cout << "Done!" << std::endl;
-    server.cleanUp();
+    controller.cleanUp();
+    esp.sendData("q",2);
+    esp.cleanUp();
+
     return 0;
 }
