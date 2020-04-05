@@ -1,7 +1,8 @@
 //
 // Created by thari on 4/4/2020.
 //
-#define debugOutput
+
+//#define debugOutput
 
 #ifndef CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
 #define CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
