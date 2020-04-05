@@ -20,8 +20,7 @@ A website is coming up soon. As of now, here is a basic example:
 
 Tracking a GPS unit in real time via the internet:
 
-First download the two files for each device, ie serverCon.h and serverCon.cpp for the client and include it in your code using #include"serverCon.h" (assuming they are in the same directry as the code you include in of course)
+Check the examples folder for a line by line breakdown of the functions and how to use them in each case (client/ server)
+The example code is quite self explanetory.
 
-Do the same for the server code.
-
-TODO- finish documentation here
+TODO- finish documentation
