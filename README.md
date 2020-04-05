@@ -14,3 +14,4 @@ client(device eg rover <-> Server (server linked to controll gui so the server i
 A website is coming up soon. As of now, here is a basic example:
 
 Tracking a GPS unit in real time via the internet:
+TODO- finish documentation here
