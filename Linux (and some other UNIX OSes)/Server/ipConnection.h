@@ -5,6 +5,8 @@
 #ifndef CTRL_VIA_IP_SERVER_IPCONNECTION_H
 #define CTRL_VIA_IP_SERVER_IPCONNECTION_H
 
+//#define debugOutput
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -23,8 +25,6 @@
 #ifndef bufflen
     #define bufflen 512
 #endif
-
-#define debugOutput
 
 class ipConnection {
 private:
