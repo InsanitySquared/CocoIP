@@ -21,7 +21,7 @@ int main() {
     server.sendData("ct");
 
     server.readData(buffr);
-    if((buffr[0]!='a')||(buffr[2]!='f')||(buffr[4]!='m')){
+    if((buffr[0]!='a')||(buffr[1]!='f')||(buffr[4]!='m')){
         std::cout<<"hmmm... thats odd, wrong ack"<<std::endl;
     }
 
