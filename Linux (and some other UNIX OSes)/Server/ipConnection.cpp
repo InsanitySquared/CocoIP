@@ -104,6 +104,3 @@ int ipConnection::cleanUp() {
     close(connSock);
     return 0;
 }
-
-
-
