@@ -10,19 +10,21 @@
 #include <netinet/in.h>
 
 #ifndef strings
-#include<strings.h>
+    #include<strings.h>
 #endif
 #ifndef unistd
-#include<unistd.h>
+    #include<unistd.h>
 #endif
 
 #ifdef debugOutput
-#include <iostream>
+    #include <iostream>
 #endif
 
 #ifndef bufflen
-#define bufflen 512
+    #define bufflen 512
 #endif
+
+#define debugOutput
 
 class ipConnection {
 private:
