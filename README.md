@@ -13,8 +13,15 @@ client(device eg rover) <-> Server <-> client(controller ie a computer running a
 
 client(device eg rover <-> Server (server linked to controll gui so the server itself sends commands to rover)
 
+server(device eg rover) <-> client controller to send commands to it (not recomended, TODO- why it isnt recomended)
+
 # Documentation
 A website is coming up soon. As of now, here is a basic example:
 
 Tracking a GPS unit in real time via the internet:
+
+First download the two files for each device, ie serverCon.h and serverCon.cpp for the client and include it in your code using #include"serverCon.h" (assuming they are in the same directry as the code you include in of course)
+
+Do the same for the server code.
+
 TODO- finish documentation here
