@@ -2,10 +2,10 @@
 // Created by thari on 4/4/2020.
 //
 
-//#define debugOutput
-
 #ifndef CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
 #define CTRL_VIA_IP_CONTROLLERCLIENT_SERVERCON_H
+
+//#define debugOutput
 
 #include <winsock2.h>
 #include <ws2tcpip.h>
