@@ -11,12 +11,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#ifndef strings
-    #include<strings.h>
-#endif
-#ifndef unistd
-    #include<unistd.h>
-#endif
+#include<strings.h>
+#include<unistd.h>
 
 #ifdef debugOutput
     #include <iostream>
