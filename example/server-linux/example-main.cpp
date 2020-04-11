@@ -1,3 +1,5 @@
+//quick server example
+
 #define bufflen 512  //buffer lenght for ipConnection class
 //#define debugOutput
 
